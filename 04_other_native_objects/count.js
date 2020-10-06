@@ -1,0 +1,35 @@
+// https://stackoverflow.com/questions/36644438/how-to-convert-a-plain-object-into-an-es6-map
+
+const sonnet = `Let me not to the marriage of true minds
+Admit impediments. Love is not love
+Which alters when it alteration finds,
+Or bends with the remover to remove.
+O no, it is an ever-fixed mark
+That looks on tempests and is never shaken;
+It is the star to every wand'ring bark,
+Whose worth's unknown, although his height be taken.
+Love's not time's fool, though rosy lips and cheeks
+Within his bending sickle's compass come:
+Love alters not with his brief hours and weeks,
+But bears it out even to the edge of doom.
+  If this be error and upon me proved,
+  I never writ, nor no man ever loved.`;
+
+// let uniques = {};
+let uniques = new Map();
+let words = sonnet.match(/[\w']+/g);
+
+for (let i = 0; i < words.length; i++) {
+    let word = words[i];
+    // if (uniques[word]) {
+    if (uniques.get(word)) {
+        // uniques[word] += 1;
+        let curVal = uniques.get(word);
+        uniques.set(word, curVal + 1);
+    } else {
+        // uniques[word] = 1;
+        uniques.set(word, 1);
+    }
+}
+
+console.log(uniques);
